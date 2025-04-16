@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #59703c;
+}
+
+.container {
+    text-align: center;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    margin: 20px auto;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border: 2px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.cell.x::before {
+    content: 'X';
+    color: #dc3545;
+}
+
+.cell.o::before {
+    content: 'O';
+    color: #303932;
+}
+
+#reset {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.status {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+.gradient-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(89,112,60,1) 0%, rgba(89,112,60,0) 70%);
+    position: absolute;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+/* Add these animation effects */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.gradient-circle:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.gradient-circle:nth-child(2) {
+    bottom: 15%;
+    right: 10%;
+    animation: float 8s ease-in-out infinite;
+}
+
+.monoline-icon {
+    margin: 0 auto 20px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.monoline-icon:hover {
+    transform: rotate(45deg);
+}
+
+.winning-combo {
+    background-color: rgba(75, 200, 75, 0.3);
+    animation: pulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+}
+
+.winning-cell {
+    position: relative;
+}
+
+.winning-cell::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    bottom: 50%;
+    left: 0;
+    transform: translateY(50%);
+    z-index: -1;
+}
